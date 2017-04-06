@@ -17,7 +17,7 @@ public class ConnectionManager {
     }
     
     private void accessServer(){
-        link = null;
+        /*link = null;
         try{
             link = new Socket(hostName, PORT);
 
@@ -30,26 +30,26 @@ public class ConnectionManager {
             
         }catch(IOException ex){
             System.out.println("E: error in accessServer");
-        }
+        }*/
     }
     
     public void closeConnection(){
-        streamToServer.println("theend");
+        /*streamToServer.println("theend");
         try{
             System.out.println("zamykam polaczenie");
             link.close(); 
         }catch(IOException ioEx){
             System.out.println("nie moge rozlaczyc");
             System.exit(1);
-        }
+        }*/
     }
     
     public void sendDataToServer(String str){
-        String response = "none";
+       /* String response = "none";
         streamToServer.println(str);
         
         response = streamFromServer.nextLine();
         System.out.println("odpowiedz serwera: "+ response);
-        
+     */   
     }
 }

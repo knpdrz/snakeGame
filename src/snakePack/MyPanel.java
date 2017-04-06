@@ -54,7 +54,7 @@ public class MyPanel extends JPanel{
     
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(350, 300);
+        return new Dimension(670, 670);
     }
   
     @Override

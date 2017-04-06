@@ -3,9 +3,11 @@ package snakePack;
 import java.awt.Graphics;
 
 public class GameController implements Runnable{
-    private static final int UPDATE_RATE = 30;
-    private int startAppleX = 3;
-    private int startAppleY = 7;
+    //private static final int UPDATE_RATE = 30;
+    private static final int ROWSY = 30;
+    private static final int COLSX = 30;
+    private static final int START_APPLE_X = 3;
+    private static final int START_APPLE_Y = 7;
     private Board board;
     private Snake snake;
     private GameState gameState;
@@ -15,7 +17,6 @@ public class GameController implements Runnable{
     public GameController(MyPanel myPanel){
         this.myPanel = myPanel;
         
-        initObjects();
         initGame();
         
         gameState = gameState.PLAYING;
@@ -23,17 +24,15 @@ public class GameController implements Runnable{
         connectionManager = new ConnectionManager();
     }
     
-    private void initObjects(){
-        board = new Board(startAppleX, startAppleY);
+    private void initGame(){     
+        board = new Board(ROWSY, COLSX, START_APPLE_X, START_APPLE_Y);
         board.init();
-        snake = new Snake();
         
-    }
-    
-    private void initGame(){        
+        snake = new Snake(ROWSY, COLSX);
         snake.init(10, 8, Direction.UP);
+        
         board.clear();
-        board.putApple(startAppleX, startAppleY);
+        //board.putApple(START_APPLE_X, START_APPLE_Y);
         board.pasteSnake(snake);
     }
     
@@ -80,7 +79,7 @@ public class GameController implements Runnable{
 
             myPanel.doRepaint();
             try{
-                Thread.sleep(170L);
+                Thread.sleep(600L);
             }catch (InterruptedException localInterruptedException) {}
         }
       }

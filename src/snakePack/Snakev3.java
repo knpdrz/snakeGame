@@ -13,7 +13,7 @@ public class Snakev3{
 
         f.setDefaultCloseOperation(3);
         f.add(new MyPanel(f));
-        f.setSize(640, 550);
+        f.setSize(670, 670);
         f.setVisible(true);
     }
   

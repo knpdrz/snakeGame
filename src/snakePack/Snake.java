@@ -3,12 +3,14 @@ package snakePack;
 import java.util.LinkedList;
 
 public class Snake{
-    public static final int ROWSY = 20;
-    public static final int COLSX = 30;
+    private static int ROWSY;
+    private static int COLSX;
     private LinkedList<SnakeField> snakeList;
     private Direction movingDirection;
 
-    public Snake(){
+    public Snake(int rowsy, int colsx){
+        ROWSY = rowsy;
+        COLSX = colsx;
         snakeList = new LinkedList();
     }
   
@@ -46,9 +48,10 @@ public class Snake{
   
     public SnakeField moveForward() {
         SnakeField lastField = (SnakeField)snakeList.getLast();
-        snakeList.removeLast();
+        if(snakeList.size() > 1)
+            snakeList.removeLast();
 
-        int xChange = 0;int yChange = 0;
+        int xChange = 0, yChange = 0;
 
         switch (movingDirection) {
             case DOWN: 
@@ -70,18 +73,17 @@ public class Snake{
 
         int newX = ((SnakeField)snakeList.getFirst()).getX() + xChange;
         int newY = ((SnakeField)snakeList.getFirst()).getY() + yChange;
-        newX %= 30;
-        newY %= 20;
+        newX %= COLSX;
+        newY %= ROWSY;
 
-        if (newX < 0) newX += 30;
-        if (newY < 0) newY += 20;
+        if (newX < 0) newX += COLSX;
+        if (newY < 0) newY += ROWSY;
         snakeList.addFirst(new SnakeField(newX, newY));
 
         return lastField;
     }
   
     public void turnLeft() {
-        System.out.printf("pre "+ movingDirection+ "->");
         switch (movingDirection) {
             case DOWN: 
                 movingDirection = Direction.RIGHT;
